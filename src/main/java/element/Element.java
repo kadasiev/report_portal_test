@@ -1,25 +1,23 @@
 package element;
 
 import static driver.DriverFactory.getDriver;
-import static org.openqa.selenium.support.ui.ExpectedConditions.frameToBeAvailableAndSwitchToIt;
-import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElementLocated;
-import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfAllElementsLocatedBy;
+import static org.openqa.selenium.support.ui.ExpectedConditions.invisibilityOfElementLocated;
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
 
 import java.time.Duration;
-import java.util.List;
+import java.util.Arrays;
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+@Slf4j
 public class Element {
 
   private final By by;
-  private static final int TIMEOUT = 60;
-  private static final int SHORT_TIMEOUT = 10;
+  private static final int TIMEOUT = 20;
 
   private Element(By by) {
     this.by = by;
@@ -34,77 +32,32 @@ public class Element {
         .until(visibilityOfElementLocated(by));
   }
 
-  public WebElement waitForVisibilityFor(long seconds) {
-    return new WebDriverWait(getDriver(), Duration.ofSeconds(seconds))
-        .until(visibilityOfElementLocated(by));
-  }
-
-  public void waitForPresence() {
-    new WebDriverWait(getDriver(), Duration.ofSeconds(SHORT_TIMEOUT))
-        .until(presenceOfElementLocated(by));
-  }
-
-  public List<WebElement> waitForVisibilityOfAll() {
-    return new WebDriverWait(getDriver(), Duration.ofSeconds(TIMEOUT))
-        .until(visibilityOfAllElementsLocatedBy(by));
-  }
-
-  public void switchToFrame() {
+  public void waitForInvisibility() {
     new WebDriverWait(getDriver(), Duration.ofSeconds(TIMEOUT))
-        .until(frameToBeAvailableAndSwitchToIt(by));
+        .until(invisibilityOfElementLocated(by));
   }
 
   public void click() {
-    waitForVisibility().click();
-  }
-
-  public void clickFor(long seconds) {
-    waitForVisibilityFor(seconds).click();
-  }
-
-  public void tryToClickFor(long seconds) {
-    try {
-      waitForVisibilityFor(seconds).click();
-    } catch(TimeoutException ignored) {}
-  }
-
-  public void doubleClick() {
-    new Actions(getDriver()).doubleClick(waitForVisibility())
-        .build().perform();
+    WebElement element = waitForVisibility();
+    element.click();
+    log.info("Выполнен клик по элементу: {}", "\"" + by.toString() + "\"");
   }
 
   public void sendKeys(CharSequence... keys) {
-    waitForVisibility().sendKeys(keys);
+    WebElement element = waitForVisibility();
+    element.sendKeys(keys);
+    log.info("Введено значение {} в поле: {}", Arrays.toString(keys), "\"" + by.toString() + "\"");
   }
 
   public void clear() {
-    waitForVisibility().clear();
+    WebElement element = waitForVisibility();
+    element.clear();
+    log.info("Удалено значение из поля: {}", "\"" + by.toString() + "\"");
   }
 
   public void hoverOver() {
     new Actions(getDriver()).moveToElement(waitForVisibility())
         .build().perform();
-  }
-
-  public String getText() {
-    return waitForVisibility().getText();
-  }
-
-  public WebElement get(int index) {
-    return waitForVisibilityOfAll().get(index);
-  }
-
-  public List<WebElement> getList() {
-    return waitForVisibilityOfAll();
-  }
-
-  public boolean isPresent() {
-    try {
-      waitForPresence();
-      return true;
-    } catch (TimeoutException e) {
-      return false;
-    }
   }
 
   public boolean isDisplayed() {
@@ -113,9 +66,5 @@ public class Element {
     } catch (NoSuchElementException e) {
       return false;
     }
-  }
-
-  public boolean attributeContains(String attribute, String value) {
-    return waitForVisibility().getAttribute(attribute).contains(value);
   }
 }
