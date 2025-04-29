@@ -4,6 +4,11 @@
 
   <test name="Regression">
 
+    <classes>
+      <class name="tests.api.DashboardTest"/>
+      <class name="tests.ui.WidgetsTest"></class>
+    </classes>
+
   </test>
 
 </suite>
