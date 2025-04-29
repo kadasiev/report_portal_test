@@ -28,31 +28,43 @@ public class Element {
   }
 
   public WebElement waitForVisibility() {
-    return new WebDriverWait(getDriver(), Duration.ofSeconds(TIMEOUT))
+    log.info("Waiting for visibility of element located by: {}", "\"" + by.toString() + "\"");
+
+    WebElement element = new WebDriverWait(getDriver(), Duration.ofSeconds(TIMEOUT))
         .until(visibilityOfElementLocated(by));
+
+    log.info("Element is now visible: {}", "\"" + by.toString() + "\"");
+    return element;
   }
 
   public void waitForInvisibility() {
+    log.info("Waiting for invisibility of element located by: {}", "\"" + by.toString() + "\"");
+
     new WebDriverWait(getDriver(), Duration.ofSeconds(TIMEOUT))
         .until(invisibilityOfElementLocated(by));
+
+    log.info("Element is now invisible: {}", "\"" + by.toString() + "\"");
   }
 
   public void click() {
     WebElement element = waitForVisibility();
     element.click();
-    log.info("Выполнен клик по элементу: {}", "\"" + by.toString() + "\"");
+
+    log.info("Clicked on element: {}", "\"" + by.toString() + "\"");
   }
 
   public void sendKeys(CharSequence... keys) {
     WebElement element = waitForVisibility();
     element.sendKeys(keys);
-    log.info("Введено значение {} в поле: {}", Arrays.toString(keys), "\"" + by.toString() + "\"");
+
+    log.info("The value {} was entered into field: {}", Arrays.toString(keys), "\"" + by.toString() + "\"");
   }
 
   public void clear() {
     WebElement element = waitForVisibility();
     element.clear();
-    log.info("Удалено значение из поля: {}", "\"" + by.toString() + "\"");
+
+    log.info("The value was deleted from the field: {}", "\"" + by.toString() + "\"");
   }
 
   public void hoverOver() {

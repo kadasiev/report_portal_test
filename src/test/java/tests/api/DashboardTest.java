@@ -17,7 +17,7 @@ public class DashboardTest {
 
   private String dashboardId;
 
-  @Test(groups = {"run"})
+  @Test
   public void verifyThatDashboardIsCreated() {
     Dashboard dashboard = getDashboard();
 

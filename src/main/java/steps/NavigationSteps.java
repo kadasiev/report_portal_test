@@ -10,6 +10,6 @@ public class NavigationSteps extends BaseSteps {
       case "Dashboards" -> sidebarBlock.openSection("Dashboards");
       default -> throw new IllegalArgumentException("Unknown section: " + sectionName);
     }
-    log.info("Выполнен переход в раздел: {}", "\"" + sectionName + "\"");
+    log.info("Section {} is opened", "\"" + sectionName + "\"");
   }
 }

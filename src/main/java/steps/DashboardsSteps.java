@@ -11,7 +11,8 @@ public class DashboardsSteps extends BaseSteps {
   public void openDashboard(String dashboardName) {
     dashboardsPage.waitUntilSignedInSuccessfullyNotificationDisappears()
         .openDashboard(dashboardName);
-    log.info("Открыт дашборд: {}", "\"" + dashboardName + "\"");
+
+    log.info("Dashboard {} opened", "\"" + dashboardName + "\"");
 
   }
 
@@ -23,7 +24,8 @@ public class DashboardsSteps extends BaseSteps {
         .clickNextStep()
         .enterWidgetName(widget.widgetName())
         .clickAddButton();
-    log.info("Создан виджет: {}", "\"" + widget.widgetName() + "\"");
+
+    log.info("Widget {} created", "\"" + widget.widgetName() + "\"");
   }
 
   public boolean isWidgetDisplayed(Widget widget) {
@@ -34,6 +36,7 @@ public class DashboardsSteps extends BaseSteps {
   public void deleteWidget(Widget widget) {
     dashboardsPage.deleteWidget(widget.widgetName())
         .confirmDelete();
-    log.info("Удален виджет: {}", "\"" + widget.widgetName() + "\"");
+
+    log.info("Widget {} deleted", "\"" + widget.widgetName() + "\"");
   }
 }

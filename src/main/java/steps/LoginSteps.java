@@ -10,6 +10,6 @@ public class LoginSteps extends BaseSteps {
     loginPage.enterLogin(user.login())
         .enterPassword(user.password())
         .clickLoginButton();
-    log.info("Пользователь {} залогинелся", "\"" + user.login() + "\"");
+    log.info("User {} Logged in", "\"" + user.login() + "\"");
   }
 }

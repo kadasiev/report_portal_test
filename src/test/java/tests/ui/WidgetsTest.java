@@ -15,7 +15,7 @@ public class WidgetsTest extends BaseTest {
   private static final String SECTION_NAME = "Dashboards";
   private static final String WIDGET_TYPE = "Launch statistics chart";
 
-  @Test()
+  @Test
   public void verifyThatWidgetIsDisplayed() {
     Widget widget = getWidget(WIDGET_TYPE);
     openPage(getValue("baseURL"));
@@ -26,6 +26,6 @@ public class WidgetsTest extends BaseTest {
     boolean isWidgetDisplayed = dashboardsSteps.isWidgetDisplayed(widget);
     dashboardsSteps.deleteWidget(widget);
 
-    assertTrue(isWidgetDisplayed);
+    assertTrue(isWidgetDisplayed, "Widget isn't displayed!");
   }
 }
