@@ -1,22 +1,22 @@
-Для того чтобы запустить все тесты 
+Running All Tests
 
-1. Для Maven необходимо выполнить команду:
+1. Using Maven:
 mvn clean test -Denv=qa -Dbrowser=firefox -DtestSuite=regression
-2. Для TestNG необходимо создать настройку как на скрине
-
+2. Using TestNG:
+   Create a run configuration as shown in the screenshot below:
 ![img.png](img.png)
 
 
-Для того чтобы запустить одтдельно один тест его нужно добавить в группу run
-
+Running Selected Tests (by Group)
+Add the tests you want to execute into the run group.
 ![img_1.png](img_1.png)
 
-1. Для запуска через Maven необходимо выполнить команду:
+1. Using Maven:
 mvn clean test -Denv=qa -Dbrowser=firefox -DtestSuite=regression -Dgroups=run
-2. Для запуска через TestNG необходимо создать настройку
-
+2. Using TestNG:
+   Create a run configuration as shown in the screenshot below:
 ![img_2.png](img_2.png)
 
-Для того чтобы запустить Allure необходимо выполнить команду:
+Generating Allure Report
 allure serve {project path}\report_portal_test\allure-results
 
