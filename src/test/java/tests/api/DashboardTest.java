@@ -10,10 +10,11 @@ import model.Dashboard;
 import org.json.JSONObject;
 import org.testng.annotations.Test;
 
+@Test
 public class DashboardTest {
 
-  private static final String CREATE_DASHBOARD_ENDPOINT = "https://demo.reportportal.io/api/v1/default_personal/dashboard";
-  private static final String GET_DASHBOARD_BY_ID_ENDPOINT = "https://demo.reportportal.io/api/v1/default_personal/dashboard/";
+  private static final String CREATE_DASHBOARD_ENDPOINT = "/api/v1/default_personal/dashboard";
+  private static final String GET_DASHBOARD_BY_ID_ENDPOINT = "/api/v1/default_personal/dashboard/";
 
   private String dashboardId;
 
@@ -22,8 +23,8 @@ public class DashboardTest {
     Dashboard dashboard = getDashboard();
 
     Response response = given()
+        .auth().oauth2(getValue("apiKey"))
         .contentType("application/json")
-        .header("Authorization", getValue("authorization"))
         .body(dashboard)
     .when()
         .post(CREATE_DASHBOARD_ENDPOINT);
@@ -36,8 +37,8 @@ public class DashboardTest {
   @Test(dependsOnMethods = {"verifyThatDashboardIsCreated"})
   public void verifyThatDashboardWasCreated() {
     given()
+        .auth().oauth2(getValue("apiKey"))
         .contentType("application/json")
-        .header("Authorization", getValue("authorization"))
     .when()
         .get(GET_DASHBOARD_BY_ID_ENDPOINT + dashboardId)
     .then()
@@ -53,8 +54,8 @@ public class DashboardTest {
     data.put("description", dashboard.description());
 
     given()
+        .auth().oauth2(getValue("apiKey"))
         .contentType("application/json")
-        .header("Authorization", getValue("authorization"))
         .body(data.toString())
     .when()
         .post(CREATE_DASHBOARD_ENDPOINT)
