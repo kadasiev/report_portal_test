@@ -14,7 +14,7 @@ import org.testng.annotations.Test;
 public class DashboardTest {
 
   private static final String CREATE_DASHBOARD_ENDPOINT = "/api/v1/default_personal/dashboard";
-  private static final String GET_DASHBOARD_BY_ID_ENDPOINT = "/api/v1/default_personal/dashboard/";
+  private static final String GET_DASHBOARD_BY_ID_ENDPOINT = "/api/v1/default_personal/dashboard";
 
   private String dashboardId;
 
