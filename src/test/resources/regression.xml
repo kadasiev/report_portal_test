@@ -5,8 +5,8 @@
   <test name="Regression">
 
     <classes>
-      <class name="api.dashboard.CreateDashboardTest"/>
-      <class name="ui.widget.AddWidgetTest"></class>
+      <class name="api.dashboard.CreateDashboardPositiveTest"/>
+      <class name="ui.widget.AddWidgetTest"/>
     </classes>
 
   </test>

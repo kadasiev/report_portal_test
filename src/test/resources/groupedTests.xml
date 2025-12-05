@@ -10,10 +10,10 @@
       </run>
     </groups>
 
-    <classes>
-      <class name="api.dashboard.CreateDashboardTest"/>
-      <class name="ui.widget.AddWidgetTest"></class>
-    </classes>
+    <packages>
+      <package name="api.dashboard"/>
+      <package name="ui.widget"/>
+    </packages>
 
   </test>
 

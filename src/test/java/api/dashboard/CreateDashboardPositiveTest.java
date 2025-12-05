@@ -12,7 +12,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 @Test
-public class CreateDashboardTest {
+public class CreateDashboardPositiveTest {
 
   private static final String PROJECT_NAME = "default_personal";
 
@@ -34,7 +34,7 @@ public class CreateDashboardTest {
 
   @Test
   public void shouldCreateDashboardWhenValidPayloadProvided() {
-    Response response = createDashboard(dashboard, PROJECT_NAME);
+    Response response = createDashboard(PROJECT_NAME, dashboard);
     response.then()
         .statusCode(201);
 

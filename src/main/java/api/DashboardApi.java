@@ -5,15 +5,26 @@ import static util.TestDataReader.getValue;
 
 import io.restassured.response.Response;
 import model.Dashboard;
+import org.json.JSONObject;
 
 public class DashboardApi extends BaseApi {
 
-  public static Response createDashboard(Dashboard dashboard, String projectName) {
+  public static Response createDashboard(String projectName, Dashboard dashboard) {
     return given()
         .auth().oauth2(getValue("apiKey"))
         .pathParams("projectName", projectName)
         .contentType("application/json")
         .body(dashboard)
+    .when()
+        .post("/api/v1/{projectName}/dashboard");
+  }
+
+  public static Response createDashboard(String projectName, JSONObject dashboard) {
+    return given()
+        .auth().oauth2(getValue("apiKey"))
+        .pathParams("projectName", projectName)
+        .contentType("application/json")
+        .body(dashboard.toString())
     .when()
         .post("/api/v1/{projectName}/dashboard");
   }
