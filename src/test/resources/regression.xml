@@ -4,10 +4,15 @@
 
   <test name="Regression">
 
-    <classes>
-      <class name="api.dashboard.CreateDashboardPositiveTest"/>
-      <class name="ui.widget.AddWidgetTest"/>
-    </classes>
+<!--    <classes>-->
+<!--      <class name="api.dashboard.CreateDashboardPositiveTest"/>-->
+<!--      <class name="ui.widget.AddWidgetTest"/>-->
+<!--    </classes>-->
+
+    <packages>
+      <package name="api.dashboard"/>
+      <package name="ui.widget"/>
+    </packages>
 
   </test>
 
