@@ -1,13 +1,13 @@
-package tests.ui;
+package ui;
 
 import static driver.DriverFactory.closeBrowser;
 import static driver.DriverFactory.openBrowser;
 
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import steps.DashboardsSteps;
-import steps.LoginSteps;
-import steps.NavigationSteps;
+import step.DashboardsSteps;
+import step.LoginSteps;
+import step.NavigationSteps;
 
 public class BaseTest {
 

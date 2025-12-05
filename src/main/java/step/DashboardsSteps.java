@@ -1,4 +1,4 @@
-package steps;
+package step;
 
 import static driver.Driver.waitFor;
 

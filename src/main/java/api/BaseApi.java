@@ -1,14 +1,12 @@
-package tests.api;
+package api;
 
 import static util.TestDataReader.getValue;
 
 import io.restassured.RestAssured;
-import org.testng.annotations.BeforeSuite;
 
-public class BaseTest {
+public class BaseApi {
 
-  @BeforeSuite
-  public static void setUp() {
+  static  {
     RestAssured.baseURI = getValue("baseURL");
   }
 }

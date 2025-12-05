@@ -1,8 +1,8 @@
-package steps;
+package step;
 
-import pages.LoginPage;
-import pages.DashboardsPage;
-import pages.SidebarBlock;
+import page.LoginPage;
+import page.DashboardsPage;
+import page.SidebarBlock;
 
 public class BaseSteps {
 

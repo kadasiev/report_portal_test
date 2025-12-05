@@ -1,4 +1,4 @@
-package pages;
+package page;
 
 import static element.Element.xpath;
 

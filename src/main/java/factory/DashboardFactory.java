@@ -1,12 +1,12 @@
-package util;
+package factory;
 
 import static util.RandomStringGenerator.generateRandomString;
 
 import model.Dashboard;
 
-public class DashboardCreator {
+public class DashboardFactory {
 
-  public static Dashboard getDashboard() {
+  public static Dashboard newDashboard() {
     return new Dashboard(generateRandomString(10), generateRandomString(10));
   }
 }
